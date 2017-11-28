@@ -10,7 +10,6 @@ function renderer(instance, td, row, col, prop, value, cellProperties){
   if (value.style) {
     // debugger
     Object.entries(value.style).map(([k, v]) => td.style[k] = v)
-    console.log('aSDFASDFG')
   }
   //td.textContent = value
 }
@@ -29,8 +28,6 @@ class SpreadSheet extends Component {
   }
   render() {
     const { data, handleSelectCells, handleFormatCells } = this.props
-    console.log('render')
-    console.log(this.HoT)
     return (
       <div className='table-wrapper'>
         <button id='paco' onClick={this.handleFormatCells_1}>rojo</button>

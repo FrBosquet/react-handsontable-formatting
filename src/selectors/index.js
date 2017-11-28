@@ -8,7 +8,6 @@ export const getFormatedCells = state => {
     { content: cell, style: format[i][j]} :
     { content: cell}
   }))
-  console.log('EOHHH')
   const tmp = Object.keys(format).reduce((acc, rowIndex) => {
     const row = format[rowIndex]
     acc[rowIndex] = Object.keys(row).reduce((acc2, columnIndex) => {
@@ -18,7 +17,6 @@ export const getFormatedCells = state => {
     }, {})
     return acc
   }, {})
-  console.log(tmp)
 
   return formatedCells
 }

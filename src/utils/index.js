@@ -30,8 +30,5 @@ export function populateWith( cells, obj){
       }
     }
   }
-
-  console.log(newCells)
-
   return newCells
 }

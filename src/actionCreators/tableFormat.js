@@ -19,8 +19,6 @@ export const formatCells = (format, selection) => {
       toColumn: selection[3]
     })
     const cells = populateWith(selected, format) 
-    console.log('He llegado', selected)
-    console.log('He llegado', cells)
     dispatch(addFormat(cells, 'red'))
   }
 }
