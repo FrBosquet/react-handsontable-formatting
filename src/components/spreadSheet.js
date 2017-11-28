@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 import HotTable from 'react-handsontable'
+import * as HoT from 'handsontable'
+
+function renderer(instance, td, row, col, prop, value, cellProperties){
+  HoT.renderers.TextRenderer.apply(this, arguments)
+  //if (value.style) td.style = _.merge({}, td.style, value.style)
+  //td.textContent = value
+}
 
 class SpreadSheet extends Component {
   constructor(props) {
@@ -24,6 +31,7 @@ class SpreadSheet extends Component {
         <HotTable ref={el => this.HoT = el.hotInstance}
           data={data}
           outsideClickDeselects={false}
+          renderer={renderer}
         />
       </div>
     )
