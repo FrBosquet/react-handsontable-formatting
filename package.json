@@ -1,7 +1,7 @@
 {
-  "name": "react-template",
+  "name": "react-hansontable-formatting",
   "version": "1.0.0",
-  "description": "Simple react+webpack+babel starter project",
+  "description": "React handsontable formatting",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
