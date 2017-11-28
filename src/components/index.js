@@ -1,6 +1,6 @@
 import React from 'react'
 import Greeting from "./greeting"
-import SpreadSheet from './spreadSheet'
+import SpreadSheet from './spreadSheetEnhanced'
 
 const App = () => (
   <div>

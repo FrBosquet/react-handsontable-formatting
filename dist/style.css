@@ -14,3 +14,14 @@ header > h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
+
+.table-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 64px;
+}
+
+.table-wrapper > div:nth-child(2){
+  display: none;
+}
