@@ -22,6 +22,6 @@ header > h1 {
   padding-top: 64px;
 }
 
-.table-wrapper > div:nth-child(2){
+.table-wrapper > div:nth-last-child(1){
   display: none;
 }
