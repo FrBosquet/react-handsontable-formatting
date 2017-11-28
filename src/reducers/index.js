@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import tableContent from './tableContent'
 import tableSelection from './tableSelection'
+import tableFormat from './tableFormat'
 
 const defaultReducer = (state = { any: "hola" }, action) => {
   switch (action.type) {
@@ -12,7 +13,8 @@ const defaultReducer = (state = { any: "hola" }, action) => {
 const mainReducer = combineReducers({
   defaultReducer,
   tableContent,
-  tableSelection
+  tableSelection,
+  tableFormat
 })
 
 export default mainReducer
