@@ -1,2 +1,2 @@
 export const SELECT_CELLS = 'SELECT_CELLS'
-export const ADD_FORMAT = 'ADD_FORMAT'
+export const SET_FORMAT = 'SET_FORMAT'
