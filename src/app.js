@@ -2,17 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-
-import Greeting from './components/greeting'
-
-const App = () => <Greeting title="Hello React"/>
-
-const reducer = (state = { any: 'hola' }, action) => {
-  switch(action.type){
-    default: return state
-  }
-}
+import reducer from './reducers'
+import App from './components'
 
 let store = createStore(
   reducer,
