@@ -16,5 +16,10 @@ module.exports = {
   },
   devServer: {
     contentBase: ouPath
+  },
+  resolve: {
+    alias: {
+      handsontable: path.resolve(__dirname, 'node_modules/handsontable-pro')
+    }
   }
 }
