@@ -1,8 +1,13 @@
 import { connect } from 'react-redux'
 import SpreadSheet from './spreadSheet'
+import { selectCells } from '../actionCreators/tableSelection'
 
 const mapStateToProps = state => ({
   data: state.tableContent
 })
 
-export default connect(mapStateToProps)(SpreadSheet)
+const mapDispatchToProps = {
+  handleSelectCells: selectCells
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpreadSheet)
