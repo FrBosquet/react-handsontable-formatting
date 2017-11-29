@@ -13,21 +13,21 @@ function renderer(instance, td, row, col, prop, value, cellProperties){
   }
 }
 
-class SpreadSheet extends Component {
-  render() {
-    const { data, handleSelectCells } = this.props
-    return (
-      <div className='table-wrapper'>
-        <ToolBox/>
-        <HotTable ref={el => this.HoT = el && el.hotInstance}
-          data={data}
-          outsideClickDeselects={false}
-          renderer={renderer}
-          afterSelectionEnd={this.props.handleSelectCells}
-        />
-      </div>
-    )
-  }
-}
+const SpreadSheet = ({ 
+  data, 
+  handleSelectCells,
+  showColHeaders
+}) => (
+  <div className='table-wrapper'>
+    <ToolBox/>
+    <HotTable
+      data={data}
+      outsideClickDeselects={false}
+      renderer={renderer}
+      colHeaders={showColHeaders}
+      afterSelectionEnd={handleSelectCells}
+    />
+  </div>
+)
 
 export default SpreadSheet
