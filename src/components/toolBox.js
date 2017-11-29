@@ -1,10 +1,9 @@
 import React from 'react'
 
-const ToolBox = ({handleFormatCells, currentSelection}) => {
+const ToolBox = ({setRed, setBold, currentSelection}) => {
   return (<div className='spreadsheet-toolbox' >
-    <div>{JSON.stringify(currentSelection)}</div>
-    <button onClick={handleFormatCells}>rojo</button>
-    <button onClick={handleFormatCells}>negrita</button>
+    <button onClick={setRed}>rojo</button>
+    <button onClick={setBold}>negrita</button>
   </div>)
 }
 
