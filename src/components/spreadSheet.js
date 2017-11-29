@@ -14,20 +14,8 @@ function renderer(instance, td, row, col, prop, value, cellProperties){
 }
 
 class SpreadSheet extends Component {
-  constructor(props) {
-    super(props)
-    this.handleFormatCells_1 = this.handleFormatCells.bind(this, { color: 'red' })
-    this.handleFormatCells_2 = this.handleFormatCells.bind(this, { fontWeight: 'bold' })
-  }
-  handleFormatCells(format, e) {
-    e.preventDefault()
-    e.stopPropagation()
-    if (!this.HoT) return
-    this.props.handleFormatCells(format, this.HoT.getSelected())
-  }
-
   render() {
-    const { data, handleSelectCells, handleFormatCells } = this.props
+    const { data, handleSelectCells } = this.props
     return (
       <div className='table-wrapper'>
         <ToolBox/>
