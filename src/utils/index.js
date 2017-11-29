@@ -17,10 +17,10 @@ export function mergeObjects( original, modifications ){
 }
 
 export function populateWith( cells, obj){
-  const newCells = Object.assign({}, cells)
-  for(let row in newCells){
-    newCells[row] = Object.assign({}, cells[row])
-    for(let cell in newCells[row]){
+  const newCells = {}
+  for(let row in cells){
+    newCells[row] = {}
+    for(let cell in cells[row]){
       newCells[row][cell] = { style: {$merge: obj}}
     }
   }
