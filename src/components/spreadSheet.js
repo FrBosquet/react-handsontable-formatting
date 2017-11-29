@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import HotTable from 'react-handsontable'
+import ToolBox from './toolBoxEnhanced'
+import HotTable, * as HoTReact from 'react-handsontable'
 import * as HoT from 'handsontable'
 import _ from 'lodash'
 
@@ -8,10 +9,8 @@ function renderer(instance, td, row, col, prop, value, cellProperties){
   args[5] = value.content
   HoT.renderers.TextRenderer.apply(this, args)
   if (value.style) {
-    // debugger
     Object.entries(value.style).map(([k, v]) => td.style[k] = v)
   }
-  //td.textContent = value
 }
 
 class SpreadSheet extends Component {
@@ -26,16 +25,17 @@ class SpreadSheet extends Component {
     if (!this.HoT) return
     this.props.handleFormatCells(format, this.HoT.getSelected())
   }
+
   render() {
     const { data, handleSelectCells, handleFormatCells } = this.props
     return (
       <div className='table-wrapper'>
-        <button id='paco' onClick={this.handleFormatCells_1}>rojo</button>
-        <button id='paco' onClick={this.handleFormatCells_2}>negrita</button>
+        <ToolBox/>
         <HotTable ref={el => this.HoT = el && el.hotInstance}
           data={data}
           outsideClickDeselects={false}
           renderer={renderer}
+          afterSelectionEnd={this.props.handleSelectCells}
         />
       </div>
     )

@@ -18,10 +18,19 @@ header > h1 {
 .table-wrapper{
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding-top: 64px;
 }
 
 .table-wrapper > div:nth-last-child(1){
   display: none;
+}
+
+.spreadsheet-toolbox{
+  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 6px;
 }
