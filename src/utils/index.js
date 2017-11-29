@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import update from 'immutability-helper'
 
 export function fromRangeToCells( range ){
   const {fromRow, fromColumn, toRow, toColumn} = range
@@ -13,7 +13,7 @@ export function fromRangeToCells( range ){
 }
 
 export function mergeObjects( original, modifications ){
- return _.merge({}, original, modifications)
+ return update(original, modifications)
 }
 
 export function populateWith( cells, obj){
@@ -21,13 +21,7 @@ export function populateWith( cells, obj){
   for(let row in newCells){
     newCells[row] = Object.assign({}, cells[row])
     for(let cell in newCells[row]){
-      if(typeof newCells[row][cell] === 'number'){
-        newCells[row][cell] = obj
-      }else if(Object.keys(obj).length === 0){
-        newCells[row][cell] = 0
-      }else{
-        newCells[row][cell] = Object.assign(newCells[row][cell], obj)
-      }
+      newCells[row][cell] = { style: {$merge: obj}}
     }
   }
   return newCells
