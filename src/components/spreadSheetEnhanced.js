@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import SpreadSheet from './spreadSheet'
 import { selectCells } from '../actionCreators/tableSelection'
-import { getCells } from '../selectors'
+import { getCells, getShowColHeaders } from '../selectors'
 
 const mapStateToProps = state => ({
-  data: getCells(state)
+  data: getCells(state),
+  showColHeaders: getShowColHeaders(state)
 })
 
 const mapDispatchToProps = {

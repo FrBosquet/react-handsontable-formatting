@@ -1,16 +1,10 @@
 import { combineReducers } from 'redux'
 import tableContent from './tableContent'
 import tableSelection from './tableSelection'
-
-const defaultReducer = (state = { any: "hola" }, action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
+import tableConfig from './tableConfig'
 
 const mainReducer = combineReducers({
-  defaultReducer,
+  tableConfig,
   tableContent,
   tableSelection
 })
