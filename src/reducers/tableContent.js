@@ -1,7 +1,7 @@
 const defaultTable = [
-  ['Headers','Headers','Headers','Headers','Headers'],
-  ['body', 'body', 'body', 'body', 'body'],
-  ['body', 'body', 'body', 'body', 'body']
+  [{type:'text', content: 'Headers'},{type:'text', content: 'Headers'},{type:'text', content: 'Headers'},{type:'text', content: 'Headers'},{type:'text', content: 'Headers'}],
+  [{type:'text', content:'body'}, {type:'text', content:'body'}, {type:'text', content:'body'}, {type:'text', content:'body'}, {type:'text', content:'body'}],
+  [{type:'text', content:'body'}, {type:'text', content:'body'}, {type:'text', content:'body'}, {type:'text', content:'body'}, {type:'text', content:'body'}]
 ]
 
 const reducer = (state = defaultTable, action) => {

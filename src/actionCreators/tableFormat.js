@@ -9,16 +9,10 @@ const addFormat = (cells, format) => {
   }
 }
 
-export const formatCells = (format, selection) => {
+export const formatCells = ( selection, format ) => {
   return (dispatch, getState) => {
-    // TODO: Remove this
-    const selected = fromRangeToCells({
-      fromRow: selection[0],
-      fromColumn: selection[1],
-      toRow: selection[2],
-      toColumn: selection[3]
-    })
-    const cells = populateWith(selected, format) 
+    const selected = fromRangeToCells( selection )
+    const cells = populateWith(selected, format)
     dispatch(addFormat(cells, 'red'))
   }
 }
