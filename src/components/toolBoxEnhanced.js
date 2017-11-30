@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { formatCells } from '../actionCreators/tableFormat'
+import { toggleColumsHeader, toggleRowsHeader } from '../actionCreators/tableConfig'
 import ToolBox from './toolBox'
 import { withHandlers, compose } from 'recompose'
 
@@ -8,7 +9,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  handleFormatCells: formatCells
+  handleFormatCells: formatCells,
+  toggleColumsHeader,
+  toggleRowsHeader
 }
 
 const enhance = compose(

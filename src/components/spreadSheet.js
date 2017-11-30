@@ -16,7 +16,8 @@ function renderer(instance, td, row, col, prop, value, cellProperties){
 const SpreadSheet = ({ 
   data, 
   handleSelectCells,
-  showColHeaders
+  showColHeaders,
+  showRowHeaders
 }) => (
   <div className='table-wrapper'>
     <ToolBox/>
@@ -24,7 +25,12 @@ const SpreadSheet = ({
       data={data}
       outsideClickDeselects={false}
       renderer={renderer}
+      contextMenu
+      mergeCells
       colHeaders={showColHeaders}
+      rowHeaders={showRowHeaders}
+
+      afterRemoveRow={e=>console.log(typeof e)}
       afterSelectionEnd={handleSelectCells}
     />
   </div>
