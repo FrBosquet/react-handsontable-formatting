@@ -6,9 +6,9 @@ import _ from 'lodash'
 
 function renderer(instance, td, row, col, prop, value, cellProperties){
   const args = Array.prototype.slice.apply(arguments)
-  args[5] = value.content
+  args[5] =value ? value.content : ''
   HoT.renderers.TextRenderer.apply(this, args)
-  if (value.style) {
+  if (value && value.style) {
     Object.entries(value.style).map(([k, v]) => td.style[k] = v)
   }
 }
