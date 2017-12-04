@@ -1,5 +1,13 @@
 import update from 'immutability-helper'
 
+update.extend('$togglebold', (mod, original) => {
+    if (!original['fontWeight'] || original['fontWeight'] == 'normal' ){
+      return Object.assign({}, original, {fontWeight: 'bold'})
+    }
+    return Object.assign({}, original, { fontWeight: 'normal' })
+  }
+)
+
 export function fromRangeToCells( range ){
   const {fromRow, fromColumn, toRow, toColumn} = range
   const cells = {}
@@ -13,7 +21,7 @@ export function fromRangeToCells( range ){
 }
 
 export function mergeObjects( original, modifications ){
- return update(original, modifications)
+  return update(original, modifications)
 }
 
 export function populateWith( cells, obj){
@@ -21,8 +29,20 @@ export function populateWith( cells, obj){
   for(let row in cells){
     newCells[row] = {}
     for(let cell in cells[row]){
-      newCells[row][cell] = { style: {$merge: obj}}
+      if(Object.keys(obj)[0] === 'fontWeight'){
+        newCells[row][cell] = { style: {$togglebold: obj}}
+      }else{
+        newCells[row][cell] = { style: {$merge: obj}}
+      }
     }
   }
   return newCells
+}
+
+export function newEmptyCell() {
+  return {
+    type:'text',
+    style: {},
+    content: 'def. cell.'
+  }
 }
