@@ -1,10 +1,10 @@
 import * as actionTypes from '../actionTypes'
-import { mergeObjects, populateWith } from '../utils'
+import { mergeObjects, populateWith, newEmptyCell, newEmptyRow } from '../utils'
 
 const defaultTable = [
-  [{type:'text', style:{}, content:'Headers'},{type:'text', style:{}, content:'Headers'},{type:'text', style:{}, content:'Headers'},{type:'text', style:{}, content:'Headers'},{type:'text', style:{}, content: 'Headers'}],
-  [{type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}],
-  [{type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}, {type:'text', style:{}, content:'body'}]
+  [newEmptyCell(), newEmptyCell(), newEmptyCell(), newEmptyCell(), newEmptyCell()],
+  [newEmptyCell(), newEmptyCell(), newEmptyCell(), newEmptyCell(), newEmptyCell()],
+  [newEmptyCell(), newEmptyCell(), newEmptyCell(), newEmptyCell(), newEmptyCell()]
 ]
 
 const reducer = (state = defaultTable, action) => {
