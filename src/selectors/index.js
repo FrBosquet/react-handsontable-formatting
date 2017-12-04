@@ -10,5 +10,5 @@ export const getCellsContent = createSelector(
 )
 export const getCellsStyle = createSelector(
   getCellsData,
-  data => data.map( row => row.map( cell => cell.Style || {}))
+  data => data.map( row => row.map( cell => cell.style || {}))
 )

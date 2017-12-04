@@ -19,7 +19,11 @@ class SpreadSheet extends Component {
       const { style } = this.props
       debugger
       const styleRow = style[row]
-      td.style = style[row] ? style[row][col] : {}
+      const styleCell = style[row] ? style[row][col] : undefined
+      if(styleCell){
+        debugger
+        Object.entries(styleCell).forEach(([key, value]) => td.style[key] = value)
+      }
     }
     // if (value && value.style) {
     //   Object.entries(value.style).map(([k, v]) => td.style[k] = v)
