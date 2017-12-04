@@ -11,7 +11,14 @@ class SpreadSheet extends Component {
   }
 
   renderer(instance, td, row, col, prop, value, cellProperties){
-    HoT.renderers.TextRenderer.apply(this, arguments)
+    let args = Array.prototype.slice.apply(arguments)
+    
+    if(value && /=/.test(value[0])){
+      const param = value.substr(1)
+      args[5] = this.props.telemetry[param]
+      debugger
+    }
+    HoT.renderers.TextRenderer.apply(this, args)
     if(this.props) {
       const { style } = this.props
       const styleRow = style[row]
@@ -59,7 +66,7 @@ class SpreadSheet extends Component {
           ref={el => this.HoT = el && el.hotInstance}
           outsideClickDeselects={false}
           renderer={this.renderer.bind(this)}
-          autoColumnSize={false}
+          autoColumnSize={true}
           contextMenu
           mergeCells
           copyPaste

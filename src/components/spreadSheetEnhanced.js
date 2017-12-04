@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
   data: getCellsContent(state),
   style: getCellsStyle(state),
   showColHeaders: getShowColHeaders(state),
-  showRowHeaders: getShowRowHeaders(state)
+  showRowHeaders: getShowRowHeaders(state),
+  telemetry: state.telemetry
 })
 
 const mapDispatchToProps = {
