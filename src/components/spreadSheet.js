@@ -11,39 +11,43 @@ class SpreadSheet extends Component {
   }
 
   renderer(instance, td, row, col, prop, value, cellProperties){
-    // const args = Array.prototype.slice.apply(arguments)
-    // args[5] =value ? value.content : ''
-    // debugger
     HoT.renderers.TextRenderer.apply(this, arguments)
     if(this.props) {
       const { style } = this.props
-      debugger
       const styleRow = style[row]
       const styleCell = style[row] ? style[row][col] : undefined
       if(styleCell){
-        debugger
         Object.entries(styleCell).forEach(([key, value]) => td.style[key] = value)
       }
     }
-    // if (value && value.style) {
-    //   Object.entries(value.style).map(([k, v]) => td.style[k] = v)
-    // }
   }
 
-  loadDataFromRedux(){
-    const dataAsString = JSON.stringify(this.props.data)
+  loadData( data ){
+    const dataAsString = JSON.stringify(data)
     const dataCopy = JSON.parse(dataAsString)
     this.HoT.loadData(dataCopy)
   }
 
   componentDidMount(){
-    this.loadDataFromRedux()
+    this.loadData( this.props.data)
+  }
+  
+  shouldComponentUpdate( nextProps ){
+    const newData = nextProps.data
+    this.loadData( newData )
+    return true
+  }
+
+  afterChange(changes){
+    if(changes){
+      this.props.handleChangeCell(...changes)
+    }
   }
 
   render(){
     const {
-      data,
       handleSelectCells,
+      handleChangeCell,
       showColHeaders,
       showRowHeaders,
       addRow
@@ -59,6 +63,7 @@ class SpreadSheet extends Component {
           contextMenu
           mergeCells
           copyPaste
+          afterChange={this.afterChange.bind(this)}
           colHeaders={showColHeaders}
           rowHeaders={showRowHeaders}
           afterCreateRow={(i) => {

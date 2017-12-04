@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import SpreadSheet from './spreadSheet'
 import { selectCells } from '../actionCreators/tableSelection'
-import { addRow } from '../actionCreators/tableContent'
+import { changeCell } from '../actionCreators/tableContent'
 import { getCellsContent, getCellsStyle, getShowColHeaders, getShowRowHeaders } from '../selectors'
 
 const mapStateToProps = state => ({
@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  handleSelectCells: selectCells
+  handleSelectCells: selectCells,
+  handleChangeCell: changeCell 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpreadSheet)
