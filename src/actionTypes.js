@@ -1,4 +1,5 @@
 export const SELECT_CELLS = 'SELECT_CELLS'
 export const SET_FORMAT = 'SET_FORMAT'
+export const ADD_ROW = 'ADD_ROW'
 export const TOGGLE_COLUMNS_HEADER = 'TOGGLE_COLUMNS_HEADER'
 export const TOGGLE_ROWS_HEADER = 'TOGGLE_ROWS_HEADER'

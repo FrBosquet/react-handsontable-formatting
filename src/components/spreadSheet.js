@@ -3,37 +3,69 @@ import ToolBox from './toolBoxEnhanced'
 import HotTable, * as HoTReact from 'react-handsontable'
 import * as HoT from 'handsontable'
 import _ from 'lodash'
+import { newEmptyCell } from '../utils'
 
-function renderer(instance, td, row, col, prop, value, cellProperties){
-  const args = Array.prototype.slice.apply(arguments)
-  args[5] =value ? value.content : ''
-  HoT.renderers.TextRenderer.apply(this, args)
-  if (value && value.style) {
-    Object.entries(value.style).map(([k, v]) => td.style[k] = v)
+class SpreadSheet extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  renderer(instance, td, row, col, prop, value, cellProperties){
+    // const args = Array.prototype.slice.apply(arguments)
+    // args[5] =value ? value.content : ''
+    // debugger
+    HoT.renderers.TextRenderer.apply(this, arguments)
+    if(this.props) {
+      const { style } = this.props
+      debugger
+      const styleRow = style[row]
+      td.style = style[row] ? style[row][col] : {}
+    }
+    // if (value && value.style) {
+    //   Object.entries(value.style).map(([k, v]) => td.style[k] = v)
+    // }
+  }
+
+  loadDataFromRedux(){
+    const dataAsString = JSON.stringify(this.props.data)
+    const dataCopy = JSON.parse(dataAsString)
+    this.HoT.loadData(dataCopy)
+  }
+
+  componentDidMount(){
+    this.loadDataFromRedux()
+  }
+
+  render(){
+    const {
+      data,
+      handleSelectCells,
+      showColHeaders,
+      showRowHeaders,
+      addRow
+    } = this.props
+    return (
+      <div className='table-wrapper'>
+        <ToolBox />
+        <HotTable
+          ref={el => this.HoT = el && el.hotInstance}
+          outsideClickDeselects={false}
+          renderer={this.renderer.bind(this)}
+          autoColumnSize={false}
+          contextMenu
+          mergeCells
+          copyPaste
+          colHeaders={showColHeaders}
+          rowHeaders={showRowHeaders}
+          afterCreateRow={(i) => {
+            const cellsPerRow = this.HoT.getDataAtRow(i).length
+            for(let j = 0;j < cellsPerRow; j++) this.HoT.setDataAtCell(i,j,newEmptyCell())
+          }}
+          afterSelectionEnd={handleSelectCells}
+        />
+      </div>  
+    )
   }
 }
-
-const SpreadSheet = ({ 
-  data, 
-  handleSelectCells,
-  showColHeaders,
-  showRowHeaders
-}) => (
-  <div className='table-wrapper'>
-    <ToolBox/>
-    <HotTable
-      data={data}
-      outsideClickDeselects={false}
-      renderer={renderer}
-      contextMenu
-      mergeCells
-      colHeaders={showColHeaders}
-      rowHeaders={showRowHeaders}
-
-      afterRemoveRow={e=>console.log(typeof e)}
-      afterSelectionEnd={handleSelectCells}
-    />
-  </div>
-)
 
 export default SpreadSheet
