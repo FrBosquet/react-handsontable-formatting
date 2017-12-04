@@ -34,3 +34,8 @@ header > h1 {
   justify-content: flex-start;
   padding: 6px;
 }
+
+.htCore td{
+  word-wrap: normal;
+  word-break: break-all;
+}
