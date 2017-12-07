@@ -3,7 +3,9 @@ import * as actionTypes from '../actionTypes'
 const defaultState = {
   showColHeaders: true,
   showRowHeaders: true,
-  zoomFactor: 1.1
+  zoomFactor: 1,
+  columnWidths: [100, 100, 100, 100, 100],
+  rowHeights: [30, 30, 30, 30]
 }
 
 const reducer = ( state = defaultState, action) => {

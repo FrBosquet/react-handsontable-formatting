@@ -20,9 +20,9 @@ class SpreadSheet extends Component {
       args[5] = this.props.telemetry[param]
     }
     HoT.renderers.TextRenderer.apply(this, args)
+    td.style.fontSize = `${this.props.zoomFactor}rem`
     if(this.props) {
       const { style } = this.props
-      const styleRow = style[row]
       const styleCell = style[row] ? style[row][col] : undefined
       if(styleCell){
         Object.entries(styleCell).forEach(([key, value]) => td.style[key] = value)
