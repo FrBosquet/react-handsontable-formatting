@@ -57,26 +57,27 @@ class SpreadSheet extends Component {
       handleChangeCell,
       showColHeaders,
       showRowHeaders,
-      addRow
+      handleAddRow,
+      handleAddCol,
+      handleChange
     } = this.props
+
     return (
       <div className='table-wrapper'>
         <ToolBox />
         <HotTable
-          ref={el => this.HoT = el && el.hotInstance}
+          ref={HTMLelement => this.HotTableInstance = HTMLelement && HTMLelement.hotInstance}
           outsideClickDeselects={false}
-          renderer={this.renderer.bind(this)}
+          renderer={this.renderer}
           autoColumnSize={true}
           contextMenu
           mergeCells
           copyPaste
-          afterChange={this.afterChange.bind(this)}
+          afterCreateCol = {handleAddCol}
+          afterCreateRow={ handleAddRow }
+          afterSetDataAtCell={ handleChange }
           colHeaders={showColHeaders}
           rowHeaders={showRowHeaders}
-          afterCreateRow={(i) => {
-            const cellsPerRow = this.HoT.getDataAtRow(i).length
-            for(let j = 0;j < cellsPerRow; j++) this.HoT.setDataAtCell(i,j,newEmptyCell())
-          }}
           afterSelectionEnd={handleSelectCells}
         />
       </div>  

@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
+import { compose, setDisplayName, withHandlers} from 'recompose'
 import SpreadSheet from './spreadSheet'
 import { selectCells } from '../actionCreators/tableSelection'
-import { changeCell } from '../actionCreators/tableContent'
+import { changeCell, addRow, addCol } from '../actionCreators/tableContent'
 import { getCellsContent, getCellsStyle, getShowColHeaders, getShowRowHeaders } from '../selectors'
 
 const mapStateToProps = state => ({
@@ -14,8 +15,20 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   handleSelectCells: selectCells,
-  handleChangeCell: changeCell 
+  changeCell,
+  addRow,
+  addCol
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpreadSheet)
+const enhance = compose(
+  setDisplayName('SpreadSheet'),
+  connect(mapStateToProps, mapDispatchToProps),
+  withHandlers({
+    handleChange: props => changes => props.changeCell(...changes),
+    handleAddRow: props => row => props.addRow( row ),
+    handleAddCol: props => col => props.addCol( col )
+  })
+)
+
+export default enhance(SpreadSheet)
 
