@@ -8,6 +8,8 @@ import { newEmptyCell } from '../utils'
 class SpreadSheet extends Component {
   constructor(props){
     super(props)
+    this.renderer = this.renderer.bind(this)
+    this.loadData = this.loadData.bind(this)
   }
 
   renderer(instance, td, row, col, prop, value, cellProperties){
@@ -16,7 +18,6 @@ class SpreadSheet extends Component {
     if(value && /=/.test(value[0])){
       const param = value.substr(1)
       args[5] = this.props.telemetry[param]
-      debugger
     }
     HoT.renderers.TextRenderer.apply(this, args)
     if(this.props) {
@@ -29,26 +30,16 @@ class SpreadSheet extends Component {
     }
   }
 
+  componentDidMount() {
+    this.loadData(this.props.data)    
+  }
+
+  componentDidUpdate() {
+    this.loadData(this.props.data)
+  }
+
   loadData( data ){
-    const dataAsString = JSON.stringify(data)
-    const dataCopy = JSON.parse(dataAsString)
-    this.HoT.loadData(dataCopy)
-  }
-
-  componentDidMount(){
-    this.loadData( this.props.data)
-  }
-  
-  shouldComponentUpdate( nextProps ){
-    const newData = nextProps.data
-    this.loadData( newData )
-    return true
-  }
-
-  afterChange(changes){
-    if(changes){
-      this.props.handleChangeCell(...changes)
-    }
+    this.HotTableInstance.loadData(JSON.parse(JSON.stringify(data)))
   }
 
   render(){

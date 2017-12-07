@@ -43,6 +43,6 @@ export function newEmptyCell() {
   return {
     type:'text',
     style: {},
-    content: 'def. cell.'
+    content: ''
   }
 }
