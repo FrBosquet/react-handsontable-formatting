@@ -49,8 +49,13 @@ class SpreadSheet extends Component {
       showColHeaders,
       showRowHeaders,
       handleAddRow,
+      handleRemoveCol,
       handleAddCol,
-      handleChange
+      handleRemoveRow,
+      handleChange,
+      zoomFactor,
+      columnsWidths,
+      rowsHeights
     } = this.props
 
     return (
@@ -60,11 +65,15 @@ class SpreadSheet extends Component {
           ref={HTMLelement => this.HotTableInstance = HTMLelement && HTMLelement.hotInstance}
           outsideClickDeselects={false}
           renderer={this.renderer}
-          autoColumnSize={true}
+          autoColumnSize
+          colWidths={columnsWidths}
+          rowHeights={rowsHeights}
           contextMenu
           mergeCells
           copyPaste
+          afterRemoveCol = {handleRemoveCol}
           afterCreateCol = {handleAddCol}
+          afterRemoveRow = {handleRemoveRow}
           afterCreateRow={ handleAddRow }
           afterSetDataAtCell={ handleChange }
           colHeaders={showColHeaders}

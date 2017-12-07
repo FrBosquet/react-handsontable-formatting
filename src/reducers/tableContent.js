@@ -26,12 +26,23 @@ const reducer = (state = defaultTable, action) => {
       return newState
     case actionTypes.ADD_COLUMN:
       return state
-        .slice()
         .map( row => [
           ...row.slice(0, action.payload),
           newEmptyCell(),
           ...row.slice(action.payload)
         ])
+    case actionTypes.REMOVE_ROW:
+      return [
+        ...state.slice(0, action.payload.row),
+        ...state.slice(action.payload.row + action.payload.amm)
+      ]
+    case actionTypes.REMOVE_COL:
+      return state
+        .map( row => [
+          ...row.slice(0, action.payload.col),
+          ...row.slice(action.payload.col + action.payload.amm)
+          ]
+        )
   }
 }
 

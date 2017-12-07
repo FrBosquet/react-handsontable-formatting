@@ -17,6 +17,8 @@ const mapDispatchToProps = {
   handleSelectCells: selectCells,
   changeCell,
   addRow,
+  removeCol,
+  removeRow,
   addCol
 }
 
@@ -26,7 +28,9 @@ const enhance = compose(
   withHandlers({
     handleChange: props => changes => props.changeCell(...changes),
     handleAddRow: props => row => props.addRow( row ),
-    handleAddCol: props => col => props.addCol( col )
+    handleRemoveCol: props => (col, amm) => props.removeCol(col, amm),
+    handleRemoveRow: props => (row, amm) => props.removeRow(row, amm),
+    handleAddCol: props => col => props.addCol( col ),
   })
 )
 

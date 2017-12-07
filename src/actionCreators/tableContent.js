@@ -20,3 +20,13 @@ export const addCol = ( col ) => {
     payload: col
   }
 }
+
+export const removeCol = ( col, amm ) => ({ 
+  type: actionTypes.REMOVE_COL,
+  payload: { col, amm }
+})
+
+export const removeRow = ( row, amm ) => ({ 
+  type: actionTypes.REMOVE_ROW,
+  payload: { row, amm }
+})
