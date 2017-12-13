@@ -24,3 +24,8 @@ export const getRowHeights = createSelector(
   getTableConfig,
   config => config.rowHeights.map(row => row * config.zoomFactor)
 )
+
+export const getBorders = createSelector(
+  getTableConfig,
+  config => config.borders
+)

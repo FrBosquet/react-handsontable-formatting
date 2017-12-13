@@ -22,10 +22,44 @@ class SpreadSheet extends Component {
     HoT.renderers.TextRenderer.apply(this, args)
     td.style.fontSize = `${this.props.zoomFactor}rem`
     if(this.props) {
-      const { style } = this.props
+      const { style, borders } = this.props
       const styleCell = style[row] ? style[row][col] : undefined
+      const borderCell = borders[row] ? borders[row][col] : undefined
+      const rightBorderCell = borders[row] ? borders[row][col + 1] : undefined
+      const downBorderCell = borders[row + 1] ? borders[row + 1][col] : undefined
+
       if(styleCell){
         Object.entries(styleCell).forEach(([key, value]) => td.style[key] = value)
+      }
+
+      if(borderCell){
+        if(borderCell.left){
+          if(borderCell.left.style) td.style.borderLeftStyle = borderCell.left.style
+          if(borderCell.left.width) td.style.borderLeftWidth = `${borderCell.left.width}px`
+          if(borderCell.left.color) td.style.borderLeftColor = borderCell.left.color
+        }
+        
+        if (borderCell.top) {
+          if (borderCell.top.style) td.style.borderTopStyle = borderCell.top.style
+          if (borderCell.top.width) td.style.borderTopWidth = `${borderCell.top.width}px`
+          if (borderCell.top.color) td.style.borderTopColor = borderCell.top.color
+        }
+      }
+
+      if(rightBorderCell){
+        if (rightBorderCell.left) {
+          if (rightBorderCell.left.style) td.style.borderRightStyle = rightBorderCell.left.style
+          if (rightBorderCell.left.width) td.style.borderRightWidth = `${rightBorderCell.left.width}px`
+          if (rightBorderCell.left.color) td.style.borderRightColor = rightBorderCell.left.color
+        }
+      }
+
+      if (downBorderCell) {
+        if (downBorderCell.top) {
+          if (downBorderCell.top.style) td.style.borderBottomStyle = downBorderCell.top.style
+          if (downBorderCell.top.width) td.style.borderBottomWidth = `${downBorderCell.top.width}px`
+          if (downBorderCell.top.color) td.style.borderBottomColor = downBorderCell.top.color
+        }
       }
     }
   }
