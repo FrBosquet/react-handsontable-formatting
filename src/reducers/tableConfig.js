@@ -34,14 +34,14 @@ function mergeBorders( original, change){
     case 'right':
       fromColumn = toColumn + 1
       change.borders = { left: change.borders.right}
-      case 'left':
+    case 'left':
       for(let i = fromRow; i <= toRow; i++){
         if (!newBorders[i]) newBorders[i] = []
         if (!newBorders[i][fromColumn]) newBorders[i][fromColumn] = {}
         Object.assign(newBorders[i][fromColumn], change.borders)
       }
       break
-      case 'bottom':
+    case 'bottom':
       fromRow = toRow + 1
       change.borders = { top: change.borders.bottom}
     case 'top':

@@ -11,7 +11,9 @@ const ToolBox = ({
   setLeftBlueBorder,
   setTopRedBorder,
   setBottomGreenBorder,
-  setRightYellowBorder
+  setRightYellowBorder,
+  setSquareBlackBorder,
+  clearBorders
 }) =>
   (<div className='spreadsheet-toolbox' >
     <button onClick={ toggleColumsHeader }>Enc. Columnas</button>
@@ -24,6 +26,8 @@ const ToolBox = ({
     <button onClick={ setTopRedBorder }>Rojo/Arriba</button>
     <button onClick={ setBottomGreenBorder }>Verde/Derecha</button>
     <button onClick={ setRightYellowBorder }>Amarillo/Abajo</button>
+    <button onClick={ setSquareBlackBorder }>BordeNegro</button>
+    <button onClick={ clearBorders }>Limpiar borde</button>
   </div>)
 
 export default ToolBox
